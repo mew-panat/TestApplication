@@ -1,0 +1,46 @@
+format_version: 10
+pipelines:
+  test:
+    group: CatApplication
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      upstream:        
+          pipeline: build-application
+          stage: build
+          name: upstream_pipeline      
+      SourceCodeRepo:
+        git: https://github.com/mewchildy/TestApplication.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        name: SourceCodeRepo
+    stages:
+    - test:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          test:
+            timeout: 0
+            resources:
+            - dev
+            tasks:            
+            - fetch:              
+                pipeline: build-application
+                stage: build
+                job: build
+                source: cats.html
+                destination: ''
+                artifact_origin: gocd
+                is_file: true
+                run_if: passed
+            - exec:
+                command: make
+                arguments: 
+                - test-cat-application     
+                run_if: passed
