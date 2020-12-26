@@ -1,0 +1,43 @@
+format_version: 10
+pipelines:
+  build-meow-application:
+    group: CatApplication
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      upstream:        
+          pipeline: test-application
+          stage: test
+          name: upstream_pipeline      
+      SourceCodeRepo:
+        git: https://github.com/mewchildy/TestApplication.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        name: SourceCodeRepo
+    stages:
+    - build:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          build:
+            timeout: 0
+            resources:
+            - dev
+            tabs:
+              meow: meow-app.html
+            artifacts:
+            - build:
+                source: meow-app.html
+                destination: ''
+            tasks:
+            - exec:
+                command: make
+                arguments:
+                - install-meow-application
+                run_if: passed         

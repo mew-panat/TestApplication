@@ -15,3 +15,12 @@ install-cat-application:
 test-cat-application:
 	echo "Test Cat Application"
 	cat cat-app.html
+
+install-meow-application:
+	echo "Install Meow Application"
+	helm upgrade --install meow-application ./helm/meow-application
+	curl http://a72ec93bb404c4d5bbf1af38fe47e389-755560048.us-east-2.elb.amazonaws.com/meow -o meow-app.html
+
+test-cat-application:
+	echo "Test Meow Application"
+	cat meow-app.html
