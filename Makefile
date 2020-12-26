@@ -9,8 +9,9 @@ install-nginx:
 
 install-cat-application:
 	echo "Install Cat Application"
-	helm install cat-application ./helm/cat-application
+	helm upgrade --install cat-application ./helm/cat-application
+	curl http://a72ec93bb404c4d5bbf1af38fe47e389-755560048.us-east-2.elb.amazonaws.com/cats -o cat-app.html
 
 test-cat-application:
 	echo "Test Cat Application"
-	curl http://cat-application:8080/cats -o cat-app.html
+	cat cat-app.html
