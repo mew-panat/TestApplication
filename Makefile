@@ -21,6 +21,6 @@ install-meow-application:
 	helm upgrade --install meow-application ./helm/meow-application
 	curl http://a72ec93bb404c4d5bbf1af38fe47e389-755560048.us-east-2.elb.amazonaws.com/meow -o meow-app.html
 
-test-cat-application:
+test-meow-application:
 	echo "Test Meow Application"
 	cat meow-app.html
