@@ -14,7 +14,7 @@ service:
 
 ingress:
   class: "nginx"
-  host: "a0b496b7343764e56a2dc93f215686cd-1474765926.us-east-2.elb.amazonaws.com"
+  host: "a72ec93bb404c4d5bbf1af38fe47e389-755560048.us-east-2.elb.amazonaws.com"
   path: "/cats"
   backendName: "cat-application"
   backendPort: 80
