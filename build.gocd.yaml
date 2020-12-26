@@ -25,10 +25,10 @@ pipelines:
             resources:
             - dev
             tabs:
-              cat: cats.html
+              cat: cat-app.html
             artifacts:
             - build:
-                source: cats.html
+                source: cat-app.html
                 destination: ''
             tasks:
             - exec:

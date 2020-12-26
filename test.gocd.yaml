@@ -34,7 +34,7 @@ pipelines:
                 pipeline: build-application
                 stage: build
                 job: build
-                source: cats.html
+                source: cat-app.html
                 destination: ''
                 artifact_origin: gocd
                 is_file: true
